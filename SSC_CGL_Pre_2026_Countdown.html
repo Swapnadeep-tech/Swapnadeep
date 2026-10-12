@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>SSC CGL Pre 2026 Countdown</title>
+<style>
+*{box-sizing:border-box}body{margin:0;min-height:100vh;display:flex;align-items:center;justify-content:center;overflow:hidden;font-family:Arial,Helvetica,sans-serif;color:#fff;background:radial-gradient(circle at 15% 20%,#00dcff33,transparent 30%),radial-gradient(circle at 85% 80%,#9646ff3d,transparent 32%),linear-gradient(135deg,#07111f,#0b1830 55%,#120d27)}
+.stars{position:fixed;inset:0;pointer-events:none;background-image:radial-gradient(circle,#fff 1px,transparent 1.5px),radial-gradient(circle,#78dcff 1px,transparent 1.5px);background-size:95px 95px,137px 137px;background-position:10px 20px,50px 70px;opacity:.3}
+.slide{width:min(94vw,1100px);min-height:min(82vh,720px);padding:55px 7vw;border:1px solid #ffffff26;border-radius:34px;background:#ffffff13;backdrop-filter:blur(18px);box-shadow:0 30px 80px #00000073;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;position:relative;z-index:1}
+.badge{font-size:clamp(14px,2vw,20px);letter-spacing:3px;text-transform:uppercase;color:#8cecff;font-weight:700;margin-bottom:14px}
+h1{margin:0;font-size:clamp(38px,7vw,78px);line-height:1;letter-spacing:-2px}.date{margin-top:18px;font-size:clamp(18px,3vw,28px);color:#ffffffc7}
+.count{margin:42px 0 10px;font-size:clamp(92px,19vw,190px);line-height:.85;font-weight:900;letter-spacing:-7px;background:linear-gradient(135deg,#fff,#7cecff 45%,#a983ff);-webkit-background-clip:text;background-clip:text;color:transparent}
+.label{font-size:clamp(25px,4vw,44px);font-weight:800;letter-spacing:5px;text-transform:uppercase}.message{margin-top:34px;max-width:700px;font-size:clamp(17px,2.5vw,25px);line-height:1.5;color:#ffffffbf}
+.today{margin-top:28px;padding:11px 20px;border-radius:999px;background:#ffffff14;color:#ffffffad;font-size:clamp(13px,1.8vw,17px)}
+.progress{width:min(650px,90%);height:7px;margin-top:28px;border-radius:10px;overflow:hidden;background:#ffffff1f}.bar{height:100%;width:0;border-radius:inherit;background:linear-gradient(90deg,#48e5ff,#9b78ff);transition:width .7s ease}.quote{margin-top:26px;font-weight:600;color:#ffffff8c}
+@media(max-width:600px){.slide{padding:45px 22px;border-radius:25px}.count{letter-spacing:-4px}.label{letter-spacing:2px}}
+</style>
+</head>
+<body>
+<div class="stars"></div>
+<main class="slide" aria-live="polite">
+<div class="badge">Your countdown has begun</div>
+<h1>SSC CGL Pre 2026</h1>
+<div class="date">24 October 2026</div>
+<div id="days" class="count">—</div>
+<div class="label">Days Left</div>
+<div id="message" class="message"></div>
+<div class="progress"><div id="bar" class="bar"></div></div>
+<div id="today" class="today"></div>
+<div class="quote">One day closer. One step stronger. 🚀</div>
+</main>
+<script>
+const examDate=new Date(2026,9,24);
+function update(){
+ const now=new Date(), today=new Date(now.getFullYear(),now.getMonth(),now.getDate());
+ const ms=86400000;
+ let d=Math.ceil((examDate-today)/ms); if(d<0)d=0;
+ document.getElementById("days").textContent=d;
+ document.getElementById("message").textContent=d>1?`${d} days. Stay focused, stay consistent, and make every day count.`:d===1?"Just 1 day left. Trust your preparation and give it your best.":"The day has arrived. Give it your absolute best!";
+ document.getElementById("today").textContent="Today: "+now.toLocaleDateString("en-IN",{weekday:"long",day:"numeric",month:"long",year:"numeric"});
+ const start=new Date(2026,9,1), total=(examDate-start)/ms, elapsed=(today-start)/ms;
+ document.getElementById("bar").style.width=Math.max(0,Math.min(100,elapsed/total*100))+"%";
+}
+update();
+</script>
+</body>
+</html>
